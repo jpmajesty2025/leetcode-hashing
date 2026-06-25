@@ -1,10 +1,10 @@
 # Missing Number, 3 Ways: Hashing vs Math vs XOR
 
-Today I revisited the classic problem:
+Problem description:
 
 > Given an array `nums` containing `n` distinct numbers from the range `[0, n]`, return the one missing number.
 
-I implemented this in **three different ways** and compared trade-offs.
+Here are my three implementions plus trade-offs.
 
 ## 1) Hash-set lookup (hashing-focused)
 
@@ -34,18 +34,18 @@ Missing number = expected sum - actual sum.
 ✅ Pros:
 - Compact and readable
 - No extra data structure
-- Great default in many interview/settings
+- Great default in many interviews and settings
 
 ⚠️ Cons:
-- Relies on formula insight (less “obvious” than set for some learners)
-- In languages with fixed-width ints, overflow needs consideration
+- Relies on formula insight but arguably less “obvious” than using a set for some learners.
+- In languages with fixed-width ints, we need to be aware of potential for overflow
 
 ---
 
 ## 3) XOR cancellation
 
 XOR all indices and values with an accumulator seeded by `n`.  
-Matching values cancel (`a ^ a = 0`), leaving only the missing value.
+Matching values cancel (`a ^ a = 0`); only the missing value remains.
 
 - **Time:** `O(n)`
 - **Space:** `O(1)`
@@ -57,7 +57,7 @@ Matching values cancel (`a ^ a = 0`), leaving only the missing value.
 
 ⚠️ Cons:
 - Least intuitive at first glance
-- Slightly harder to explain/maintain for teams unfamiliar with bitwise reasoning
+- Slightly harder to explain/maintain for teams unfamiliar with bitwise reasoning. Document this one if using it!
 
 ---
 
@@ -67,9 +67,9 @@ Matching values cancel (`a ^ a = 0`), leaving only the missing value.
 - **Best balance of clarity + space efficiency:** arithmetic sum  
 - **Bitwise-heavy contexts / overflow-sensitive environments:** XOR
 
-### My takeaway:
+### My takeaways:
 Same problem, same asymptotic time, but different **readability vs space vs conceptual complexity** trade-offs.
 
-That’s why I like implementing multiple solutions: not just to “pass,” but to understand design choices.
+Multiple implementation here provide a good exercise for understanding design choices.
 
 #LearningInPublic #LeetCode #Python #Algorithms #DataStructures #Hashing #ProblemSolving #CodingInterview
