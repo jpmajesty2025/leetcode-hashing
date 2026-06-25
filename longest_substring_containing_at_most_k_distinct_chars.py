@@ -9,7 +9,7 @@ when we have more than k distinct characters.
 '''
 from collections import defaultdict
 
-def longest_substring_containing_at_most_k_distinct_chars(s:str, k:int) -> int:
+def longest_substring_containing_at_most_k_distinct_chars(s: str, k: int) -> int:
     counts = defaultdict(int)
     left = ans = 0
     for right in range(len(s)):
@@ -21,3 +21,8 @@ def longest_substring_containing_at_most_k_distinct_chars(s:str, k:int) -> int:
             left += 1
         ans = max(ans, right - left + 1)
     return ans
+
+
+def longest_substring_k_distinct(s: str, k: int) -> int:
+    """Backward-compatible alias used by tests."""
+    return longest_substring_containing_at_most_k_distinct_chars(s, k)
