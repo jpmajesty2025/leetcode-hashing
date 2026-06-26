@@ -1,16 +1,16 @@
-# One problem, 3 hashing implementations (+ 1 robustness upgrade)
+# One problem, 3 hashing approaches (+ robust upgrade)
 
 Consider the following problem:
 
 > Given `nums`, an array of arrays of **distinct** integers, return a **sorted** list of values that appear in **every** array.
 
-This problem appeared in the hashing module of a DS&A course, and it turned out to be a great example of something subtle:
+This hashing problem from a DS&A course highlights a subtle point:
 
 - **sets** are hash-based
 - **dicts** are hash-based
 - the right choice depends on readability, extensibility, and input constraints
 
-## Version 1: Iterative set intersection (explicit/readable)
+## Version 1: Iterative set intersection (readable)
 
 ```python
 common = set(nums[0])
@@ -41,7 +41,7 @@ return sorted(set.intersection(*(set(row) for row in nums))) if nums else []
 - Same asymptotic complexity as v1
 
 ✅ Concise and idiomatic  
-⚠️ Less beginner-friendly / less step-by-step
+⚠️ Less beginner-friendly
 
 ---
 
@@ -59,10 +59,10 @@ return sorted(x for x, c in counts.items() if c == len(nums))
 
 (Using the same definitions of `K`, `U`, and `L` above.)
 
-✅ Great when you need frequency-style variants  
+✅ Great for frequency-style variants  
 ⚠️ Important caveat: this assumes each row has distinct elements
 
-### Important: If row-level distinctness is relaxed/dropped, versions 1 and 2 still work, but with version 3, duplicates can overcount and produce incorrect results.
+### If rows may contain duplicates, v1/v2 still work; v3 can overcount and be wrong.
 
 ---
 
@@ -74,7 +74,7 @@ for arr in nums:
         counts[x] += 1
 ```
 
-This deduplicates each row before counting, making the dict approach as robust as set-intersection even when arrays contain duplicates.
+This deduplicates each row first, making dict counting robust even with duplicates.
 
 ---
 
@@ -90,7 +90,7 @@ Example where v4 is the right choice:
 
 ### Takeaway
 
-The key decision isn’t “set vs dict” in isolation.  
-It’s matching the data structure to the exact problem guarantees and future variants.
+The key isn’t “set vs dict” alone.  
+Match the structure to guarantees and likely variants.
 
 #LearningInPublic #LeetCode #Python #Hashing #DataStructures #Algorithms #ProblemSolving #CodingInterview #SoftwareEngineering
