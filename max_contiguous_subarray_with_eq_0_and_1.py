@@ -28,7 +28,7 @@ nums[i] is either 0 or 1.
 from typing import List
 
 
-def findMaxLength(nums: List[int]) -> int:
+def find_max_length(nums: List[int]) -> int:
     first_seen_index = {0: -1}
     max_len = 0
     balance = 0

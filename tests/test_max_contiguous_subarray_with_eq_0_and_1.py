@@ -1,7 +1,11 @@
+import os
+import sys
 import pytest
 from hypothesis import given, strategies as st
 
-from max_contiguous_subarray_with_eq_0_and_1 import findMaxLength
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from max_contiguous_subarray_with_eq_0_and_1 import find_max_length
 
 
 def _reference_find_max_length(nums: list[int]) -> int:
@@ -34,16 +38,16 @@ def _reference_find_max_length(nums: list[int]) -> int:
     ],
 )
 def test_find_max_length_examples_and_edges(nums, expected):
-    assert findMaxLength(nums) == expected
+    assert find_max_length(nums) == expected
 
 
 @given(nums=st.lists(st.integers(min_value=0, max_value=1), min_size=1, max_size=80))
 def test_find_max_length_matches_reference(nums):
-    assert findMaxLength(nums) == _reference_find_max_length(nums)
+    assert find_max_length(nums) == _reference_find_max_length(nums)
 
 
 @given(nums=st.lists(st.integers(min_value=0, max_value=1), min_size=1, max_size=200))
 def test_find_max_length_result_invariants(nums):
-    result = findMaxLength(nums)
+    result = find_max_length(nums)
     assert 0 <= result <= len(nums)
     assert result % 2 == 0
